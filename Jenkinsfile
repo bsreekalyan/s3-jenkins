@@ -13,7 +13,8 @@ pipeline {
                 sh """ #!/usr/bin/env bash
                 set -eu
                 echo "The testing is successfull to print $VERSION and $RC_VERSION"
-                echo "The engines that need to be done are $Engines "
+                number_of_engines=echo $Engine | tr -cd , | wc -c
+                echo "You have specfied $number_of_engines for the deployment"
                 """
                 }
         }
