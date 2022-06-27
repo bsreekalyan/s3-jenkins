@@ -11,7 +11,7 @@ pipeline {
             steps{
                 sh """ #!/usr/bin/env bash
                 set -eu
-                echo "The testing is successfull"
+                echo "The testing is successfull to print $VERSION and $RC_VERSION"
                 """
                 }
         }
