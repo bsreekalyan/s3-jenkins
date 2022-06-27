@@ -20,6 +20,7 @@ pipeline {
                 echo $env | cut -d "," -f $i
                 done
                 }
+            }
         }
     }
 }
