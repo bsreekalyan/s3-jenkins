@@ -1,36 +1,42 @@
+properties([
+    parameters([
+        choice(
+            name: 'ENV',
+            choices: [
+                'dev',
+                'prod'
+            ]
+        ),
+        [$class: 'ChoiceParameter',
+            choiceType: 'PT_RADIO',
+            filterLength: 1,
+            filterable: false,
+            name: 'CHOICES',
+            script: [
+                $class: 'GroovyScript',
+                fallbackScript: [
+                    classpath: [],
+                    sandbox: false,
+                    script: 'return ["Check Jenkins ScriptApproval page"]'
+                ],
+                script: [
+                    classpath: [],
+                    sandbox: false,
+                    script: 'return ["One","Two:selected"]'
+                ]
+            ]
+        ]
+    ])
+])
+
 pipeline {
     agent any
-    parameters {
-            activeChoiceParam('choice1') {
-                        description('select your choice')
-                        choiceType('RADIO')
-                        groovyScript {
-                            script('return["aaa","bbb"]')
-                            fallbackScript('return ["error"]')
-                        }
-            }
-            activeChoiceReactiveParam('choice2') {
-                        description('select your choice')
-                        choiceType('RADIO')
-                        groovyScript {
-                            script(' if(choice1.equals("aaa")) { return ["a", "b"] } else {return ["aaaaaa","fffffff"] } ')
-                            fallbackScript('return ["error"]')
-                        }
-                        referencedParameter('choice1')
-            }
-
-        }
     stages {
-        stage('Just to Test'){
-            steps{
-                sh """ #!/usr/bin/env bash
-                set -eu
-                echo "The testing is successfull to print $VERSION and $RC_VERSION"
-                echo "These are selected"
-                """
-                }
+        stage('Print the Values') {
+            steps {
+                echo "Environment: ${params.ENV}"
+                echo "Choice: ${params.CHOICES}"
+            }
         }
     }
 }
-
-    
