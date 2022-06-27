@@ -6,9 +6,6 @@ pipeline {
         string(name: 'Engines', description: 'Enter the name of engines that need to be deployed with a comma seperator')
         string(name: 'VERSION', defaultValue: '', description: 'Version number for the new release')
         string(name: 'RC_VERSION', defaultValue: '', description: 'Release candidate version from where to create the new version')
-        booleanParam(defaultValue: false, name: 'ALL', description: 'Process all')
-        booleanParam(defaultValue: false, name: 'OPTION_1', description: 'Process option 1')
-        booleanParam(defaultValue: false, name: 'OPTION_2', description: 'Process options 2')
     }
     stages {
         stage('Just to Test'){
