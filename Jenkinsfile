@@ -6,7 +6,7 @@ pipeline {
         string(name: 'Environments', description: 'Enter the name of engines that need to be deployed with a comma seperator')
         string(name: 'VERSION', defaultValue: '', description: 'Version number for the new release')
         string(name: 'RC_VERSION', defaultValue: '', description: 'Release candidate version from where to create the new version')
-    }
+        }
     stages {
         stage('Just to Test'){
             steps{
@@ -19,7 +19,7 @@ pipeline {
                 do
                 echo $env | cut -d "," -f $i
                 done
-                }
+                """
             }
         }
     }
