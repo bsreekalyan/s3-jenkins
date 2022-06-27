@@ -9,9 +9,10 @@ pipeline {
     stages {
         stage('Just to Test'){
             steps{
-                sh #!/usr/bin/env bash
+                sh """ #!/usr/bin/env bash
                 set -eu
                 echo "The testing is successfull"
+                """
                 }
         }
     }
