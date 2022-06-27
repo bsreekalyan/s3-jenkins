@@ -1,42 +1,26 @@
-properties([
-    parameters([
-        choice(
-            name: 'ENV',
-            choices: [
-                'dev',
-                'prod'
-            ]
-        ),
-        [$class: 'ChoiceParameter',
-            choiceType: 'PT_RADIO',
-            filterLength: 1,
-            filterable: false,
-            name: 'CHOICES',
-            script: [
-                $class: 'GroovyScript',
-                fallbackScript: [
-                    classpath: [],
-                    sandbox: false,
-                    script: 'return ["Check Jenkins ScriptApproval page"]'
-                ],
-                script: [
-                    classpath: [],
-                    sandbox: false,
-                    script: 'return ["One","Two:selected"]'
-                ]
-            ]
-        ]
-    ])
-])
-
 pipeline {
     agent any
+    parameters {
+        booleanParam(name: 'RELOAD_JOB', defaultValue: false, description: 'Reload job from Jenkinsfile and exit')
+        choice(name: 'PROJECT', choices: ['azure-data-warehouse', 'google'], description: 'Select the desired engine for release')
+        string(name: 'Engines', description: 'Enter the name of engines that need to be deployed with a comma seperator')
+        string(name: 'VERSION', defaultValue: '', description: 'Version number for the new release')
+        string(name: 'RC_VERSION', defaultValue: '', description: 'Release candidate version from where to create the new version')
+        booleanParam(defaultValue: false, name: 'ALL', description: 'Process all')
+        booleanParam(defaultValue: false, name: 'OPTION_1', description: 'Process option 1')
+        booleanParam(defaultValue: false, name: 'OPTION_2', description: 'Process options 2')
+    }
     stages {
-        stage('Print the Values') {
-            steps {
-                echo "Environment: ${params.ENV}"
-                echo "Choice: ${params.CHOICES}"
-            }
+        stage('Just to Test'){
+            steps{
+                sh """ #!/usr/bin/env bash
+                set -eu
+                echo "The testing is successfull to print $VERSION and $RC_VERSION"
+                echo "The engines that need to be done are $Engines "
+                """
+                }
         }
     }
 }
+
+    
