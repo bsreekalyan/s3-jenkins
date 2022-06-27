@@ -1,7 +1,6 @@
 #!/bin/bash
 
-env="Prod,Dev,Testing,Integration"
-export number_of_environments=`echo $env | tr -cd , | wc -c`
+number_of_environments=`echo $env | tr -cd , | wc -c`
 let number_of_environments+=1
 for i in $(seq 1 $number_of_environments)
 do
