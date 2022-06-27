@@ -13,7 +13,7 @@ pipeline {
                 sh """ #!/usr/bin/env bash
                 set -eu
                 export env=$Environments
-                ./sample.sh
+                sh ./sample.sh
                 """
             }
         }
