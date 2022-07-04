@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('Copy the Release Candidate to final Directory in aws s3 bucket'){
             steps{
+                withAWS(credentials: 'sam-jenkins-demo-credentials', region: 'us-west-2')
                 sh """ #!/usr/bin/env bash
                 set -eu
                 export env=$PROJECTS
