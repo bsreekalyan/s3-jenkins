@@ -15,10 +15,6 @@ number_of_environments=$((number_of_environments + 1))
 #      echo "Please re-enter the correct Version and RC Version"
 # fi
 
-# export AWS_ACCESS_KEY_ID=AKIARE5SVWCDATUDN4V2
-# export AWS_SECRET_ACCESS_KEY=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
-
-
 # s3://sreekalyan-enterprise-1/release/azure-data-warehouse/1.0.0-RC1/
 # aws s3 ls s3://sreekalyan-enterprise-1/release/azure-data-warehouse/1.0.0-RC1
 #Copy the RC candidate into New release Bucket.
