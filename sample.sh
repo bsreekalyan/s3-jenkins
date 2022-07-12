@@ -9,7 +9,7 @@ echo $env
 echo "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}"
 
 #Check if the Version and RC version bucket exists.
-aws s3 ls "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}" 2>/dev/null
+aws s3 ls "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}"
 bucket_check=$?
 if [ $bucket_check == 0 ]; then
      echo "The Version and RC Version provided are correct"
@@ -17,6 +17,12 @@ else
      echo "Please re-enter the correct Version and RC Version"
 fi
 
+# export AWS_ACCESS_KEY_ID=AKIARE5SVWCDATUDN4V2
+# export AWS_SECRET_ACCESS_KEY=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
+
+
+# s3://sreekalyan-enterprise-1/release/azure-data-warehouse/1.0.0-RC1/
+# aws s3 ls s3://sreekalyan-enterprise-1/release/azure-data-warehouse/1.0.0-RC1
 # #Copy the RC candidate into New release Bucket.
 # for i in $(seq 1 "$number_of_environments")
 # do
