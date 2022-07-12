@@ -6,7 +6,7 @@ number_of_environments=$(echo "$env" | tr -cd , | wc -c)
 number_of_environments=$((number_of_environments + 1))
 
 #Check if the Version and RC version bucket exists.
-aws s3 ls "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}"
+aws s3 ls "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}" 2>/dev/null
 bucket_check=$?
 if [ $bucket_check -eq 0 ]
 then
