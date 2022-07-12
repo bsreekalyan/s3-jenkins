@@ -25,7 +25,7 @@ pipeline {
                 sh """ #!/usr/bin/env bash
                 set -eu
                 export env=$PROJECTS
-                sh ./sample.sh
+                sh -x ./sample.sh
                 """
             }
         }
