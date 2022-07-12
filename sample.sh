@@ -11,7 +11,8 @@ echo "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}"
 #Check if the Version and RC version bucket exists.
 aws s3 ls "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}"
 bucket_check=$?
-if [ $bucket_check == 0 ]; then
+if [ $bucket_check == 0 ]
+then
      echo "The Version and RC Version provided are correct"
 else
      echo "Please re-enter the correct Version and RC Version"
