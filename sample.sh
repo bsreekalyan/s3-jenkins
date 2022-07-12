@@ -5,13 +5,10 @@ set -e
 number_of_environments=$(echo "$env" | tr -cd , | wc -c)
 number_of_environments=$((number_of_environments + 1))
 
-echo $env
-echo "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}"
-
 #Check if the Version and RC version bucket exists.
 aws s3 ls "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}"
 bucket_check=$?
-if [ $bucket_check == 0 ]
+if [ $bucket_check -eq 0 ]
 then
      echo "The Version and RC Version provided are correct"
 else
