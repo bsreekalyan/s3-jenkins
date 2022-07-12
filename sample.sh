@@ -5,23 +5,10 @@ set -e
 number_of_environments=$(echo "$env" | tr -cd , | wc -c)
 number_of_environments=$((number_of_environments + 1))
 
-# #Check if the Version and RC version bucket exists.
-# aws s3 ls "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}" 2>/dev/null
-# bucket_check=$?
-# if [ $bucket_check -eq 0 ]
-# then
-#      echo "The Version and RC Version provided are correct"
-# else
-#      echo "Please re-enter the correct Version and RC Version"
-# fi
-
-# s3://sreekalyan-enterprise-1/release/azure-data-warehouse/1.0.0-RC1/
-# aws s3 ls s3://sreekalyan-enterprise-1/release/azure-data-warehouse/1.0.0-RC1
-#Copy the RC candidate into New release Bucket.
 for i in $(seq 1 "$number_of_environments")
 do
-    echo "$env" | cut -d "," -f "$i"
-    aws s3 cp --recursive "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}-${RC_VERSION}" "s3://sreekalyan-enterprise-1/release/${PROJECTS}/${VERSION}"
+    current_project=$(echo "$env" | cut -d "," -f "$i")
+    aws s3 cp --recursive "s3://sreekalyan-enterprise-1/release/${current_project}/${VERSION}-${RC_VERSION}" "s3://sreekalyan-enterprise-1/release/${current_project}/${VERSION}"
 done
 
 # # Check the copy is successful
